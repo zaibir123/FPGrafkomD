@@ -4,6 +4,12 @@ var cons = 0;
 const start = document.querySelector("#start");
 var audio = new Audio('./assets/music/mainmenu.mp3');
 
+//variables field
+var plane;
+var fieldWidth = 2000;
+var fieldHeight = 500;
+var fieldDepth = 100;
+
 function mainloop() {
     init();
     animate();
@@ -52,8 +58,21 @@ function init() {
     player = new THREE.Mesh(boxGeometry, wireMaterial);
     player.position.set(0, 25, -20);
     scene.add(player);
-
-
+    //lantai
+    var QualityPlane = 10;
+    var planeMaterial = new THREE.MeshLambertMaterial(
+        {color: "#000000"}
+    );
+    plane = new THREE.Mesh(
+        new THREE.PlaneBufferGeometry(
+            fieldWidth,
+            fieldHeight,
+            QualityPlane,
+            QualityPlane
+        ),
+        planeMaterial
+    );
+    scene.add(plane);
 }
 
 function animate() {
